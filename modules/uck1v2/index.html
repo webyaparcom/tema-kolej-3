@@ -1,0 +1,100 @@
+<section class="modulex-iletisim-rehber-karti{{fbsinif}}" {{fbetiket}}>
+  <div class="modulex-iletisim-rehber-karti-ic">
+    {{fbbas}}
+    {{fbgovde}}
+  </div>
+</section>
+
+<style>
+  /* iletisim-rehber-karti — iletisim-baglanti-agaci düz bağlantı düğmeleri, iletisim-sohbet mesaj balonları kurar; bu modül CİHAZ MOCKUP'ı içinde telefon rehberi kişi kartıdır: çentikli çerçeve, baş harf avatarı, yuvarlak eylem tuşları ve iOS/Android kişi ayrıntısı gibi gruplu satırlar. */
+  .modulex-iletisim-rehber-karti { box-sizing: border-box; width: 100%; padding: --bosluk-- 20px; background: --bg--; color: --text--; font-size: 1rem; line-height: 1.6; font-family: var(--mx-font-sans, inherit); overflow-wrap: break-word; }
+  .modulex-iletisim-rehber-karti *, .modulex-iletisim-rehber-karti *::before, .modulex-iletisim-rehber-karti *::after { box-sizing: border-box; }
+  /* ham/css.css «* { font-size: 14px }» kalıtımı keser — modül içinde boyut üstten gelsin (ikon yazı tipi hariç) */
+  .modulex-iletisim-rehber-karti :where(*:not(.material-symbols-outlined)) { font-size: inherit; }
+  /* aynı «*» kuralı font-weight 400 · line-height 1.2 · font-family de basar — modül içinde kalıtım */
+  .modulex-iletisim-rehber-karti :where(*:not(.material-symbols-outlined)) { font-weight: inherit; line-height: inherit; font-family: inherit; }
+  .modulex-iletisim-rehber-karti :where(h2, h3, h4, p, ul, ol, li, figure, blockquote, dl, dd) { margin: 0; }
+  .modulex-iletisim-rehber-karti :where(ul, ol) { padding: 0; list-style: none; }
+  .modulex-iletisim-rehber-karti img { display: block; max-width: 100%; }
+  /* <img width height> öznitelik yüksekliği CSS aspect-ratio'yu ezer — sıfır özgüllükle auto (modül sınıfının height'ı yine kazanır) */
+  :where(.modulex-iletisim-rehber-karti) img { height: auto; }
+  .modulex-iletisim-rehber-karti [hidden] { display: none !important; }
+  .modulex-iletisim-rehber-karti :where(a, button, summary, [data-cevir]) { cursor: pointer; }
+  .modulex-iletisim-rehber-karti :where(a, button, summary, [tabindex]):focus-visible { outline: 3px solid --accent--; outline-offset: 3px; }
+  .modulex-iletisim-rehber-karti-ic { max-width: --max--; margin-inline: auto; }
+  .modulex-iletisim-rehber-karti-bas { display: grid; gap: 12px; margin-block-end: clamp(32px, 4vw, 52px); }
+  .modulex-iletisim-rehber-karti--bassiz .modulex-iletisim-rehber-karti-bas { display: none; }
+  .modulex-iletisim-rehber-karti-ust { color: --accentInk--; font-size: 0.8rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; }
+  .modulex-iletisim-rehber-karti-baslik { font-family: var(--mx-font-heading, inherit); font-size: clamp(1.8rem, 3.4vw, 2.8rem); font-weight: 750; letter-spacing: -0.025em; line-height: 1.1; }
+  .modulex-iletisim-rehber-karti-metin { color: --muted--; font-size: 1.05rem; line-height: 1.7; }
+  .modulex-iletisim-rehber-karti-cta { display: flex; flex-wrap: wrap; gap: 12px; margin-block-start: 8px; }
+  .modulex-iletisim-rehber-karti-dugme { display: inline-flex; align-items: center; gap: 8px; min-height: 48px; padding: 12px 22px; border: 2px solid --accent--; border-radius: 999px; background: --accent--; color: --accentText--; font-weight: 700; text-decoration: none; transition: transform 0.25s ease, background 0.25s ease, color 0.25s ease; }
+  .modulex-iletisim-rehber-karti-dugme:hover { transform: translateY(-2px); }
+  .modulex-iletisim-rehber-karti-dugme--ikincil { background: transparent; color: --text--; border-color: --cizgi--; }
+  .modulex-iletisim-rehber-karti-dugme--ikincil:hover { border-color: --accent--; }
+  .modulex-iletisim-rehber-karti-dugme .material-symbols-outlined { font-size: 20px; }
+
+  .modulex-iletisim-rehber-karti-duzen { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: clamp(28px, 6vw, 96px); align-items: center; }
+  .modulex-iletisim-rehber-karti-yazi { display: grid; gap: 16px; min-width: 0; }
+  .modulex-iletisim-rehber-karti-cihaz { inline-size: min(100%, 340px); padding: 12px; border-radius: 48px; background: --text--; box-shadow: 0 40px 80px -40px color-mix(in srgb, --text-- 70%, transparent), inset 0 0 0 2px color-mix(in srgb, --bg-- 18%, transparent); transform: rotate(-2deg); transition: transform 0.5s ease; }
+  .modulex-iletisim-rehber-karti-cihaz:hover { transform: rotate(0deg) translateY(-6px); }
+  .modulex-iletisim-rehber-karti-ekran { position: relative; display: grid; align-content: start; gap: 18px; min-block-size: 560px; padding-block: 52px 22px; padding-inline: 18px; overflow: hidden; border-radius: 38px; background: --bg--; }
+  .modulex-iletisim-rehber-karti-centik { position: absolute; inset-block-start: 12px; inset-inline-start: 50%; inline-size: 96px; block-size: 24px; margin-inline-start: -48px; border-radius: 999px; background: --text--; }
+  .modulex-iletisim-rehber-karti-profil { display: grid; justify-items: center; gap: 10px; text-align: center; }
+  .modulex-iletisim-rehber-karti-avatar { display: inline-grid; place-items: center; inline-size: 88px; block-size: 88px; border-radius: 50%; background: linear-gradient(135deg, --accent--, color-mix(in srgb, --accent-- 55%, --text--)); color: --accentText--; font-size: 2.4rem; font-weight: 800; text-transform: uppercase; animation: modulex-iletisim-rehber-karti-belir 0.6s ease both; }
+  @keyframes modulex-iletisim-rehber-karti-belir { from { opacity: 0; transform: scale(0.7); } to { opacity: 1; transform: none; } }
+  .modulex-iletisim-rehber-karti-pad { font-size: 1.3rem; font-weight: 750; overflow-wrap: anywhere; }
+  .modulex-iletisim-rehber-karti-tuslar { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; }
+  .modulex-iletisim-rehber-karti-tus { display: grid; justify-items: center; gap: 6px; inline-size: 66px; color: --accentInk--; font-size: 0.75rem; font-weight: 700; text-align: center; text-decoration: none; }
+  .modulex-iletisim-rehber-karti-tdaire { display: inline-grid; place-items: center; inline-size: 48px; block-size: 48px; border-radius: 50%; background: color-mix(in srgb, --accent-- 13%, transparent); transition: background 0.2s ease, color 0.2s ease, transform 0.2s ease; }
+  .modulex-iletisim-rehber-karti-tus:hover .modulex-iletisim-rehber-karti-tdaire { background: --accent--; color: --accentText--; transform: translateY(-2px); }
+  .modulex-iletisim-rehber-karti-tad { overflow-wrap: anywhere; line-height: 1.25; }
+  .modulex-iletisim-rehber-karti-rliste { display: grid; overflow: hidden; border-radius: 16px; background: --kartBg--; }
+  .modulex-iletisim-rehber-karti-rsat { display: grid; gap: 2px; min-width: 0; padding: 12px 16px; border-block-end: 1px solid --cizgi--; }
+  .modulex-iletisim-rehber-karti-rsat:last-child { border-block-end: 0; }
+  .modulex-iletisim-rehber-karti-retk { color: --muted--; font-size: 0.78rem; font-weight: 650; }
+  .modulex-iletisim-rehber-karti-rsat .modulex-iletisim-rehber-karti-deger { font-size: 0.95rem; }
+  @media (max-width: 1024px) {
+    .modulex-iletisim-rehber-karti-duzen { grid-template-columns: minmax(0, 1fr); justify-items: center; }
+    .modulex-iletisim-rehber-karti-yazi { justify-self: stretch; }
+  }
+  @media (max-width: 768px) {
+    .modulex-iletisim-rehber-karti-cihaz { border-radius: 40px; transform: none; }
+    .modulex-iletisim-rehber-karti-ekran { min-block-size: 0; border-radius: 30px; }
+  }
+  .modulex-iletisim-rehber-karti-kikon { flex: none; display: inline-grid; place-items: center; width: 48px; height: 48px; border-radius: 14px; background: color-mix(in srgb, --accent-- 14%, transparent); color: --accentInk--; font-size: 24px; }
+  .modulex-iletisim-rehber-karti-ketiket { display: block; color: --muted--; font-size: 0.82rem; font-weight: 650; letter-spacing: 0.06em; text-transform: uppercase; }
+  .modulex-iletisim-rehber-karti-deger { color: inherit; font-weight: 650; text-decoration: none; overflow-wrap: anywhere; transition: color 0.2s ease; }
+  a.modulex-iletisim-rehber-karti-deger:hover { color: --accentInk--; text-decoration: underline; text-underline-offset: 4px; }
+  .modulex-iletisim-rehber-karti-eylem { display: inline-flex; align-items: center; gap: 6px; color: --accentInk--; font-weight: 700; text-decoration: none; transition: gap 0.2s ease; }
+  .modulex-iletisim-rehber-karti-eylem:hover { gap: 10px; }
+  .modulex-iletisim-rehber-karti-eylem .material-symbols-outlined { font-size: 18px; }
+  .modulex-iletisim-rehber-karti-kopya { display: none; align-items: center; gap: 6px; min-height: 36px; padding: 6px 12px; border: 1px solid --cizgi--; border-radius: 999px; background: transparent; color: --text--; font: inherit; font-size: 0.85rem; font-weight: 650; transition: border-color 0.2s ease, background 0.2s ease; }
+  .modulex-iletisim-rehber-karti--kjs .modulex-iletisim-rehber-karti-kopya { display: inline-flex; }
+  .modulex-iletisim-rehber-karti-kopya:hover { border-color: --accent--; }
+  .modulex-iletisim-rehber-karti-kopya .material-symbols-outlined { font-size: 18px; }
+  .modulex-iletisim-rehber-karti--kopyalandi { background: color-mix(in srgb, --accent-- 14%, transparent); }
+  .modulex-iletisim-rehber-karti-sosyal { display: grid; gap: 10px; }
+  .modulex-iletisim-rehber-karti-sbaslik { color: --muted--; font-size: 0.9rem; font-weight: 650; }
+  .modulex-iletisim-rehber-karti-sliste { display: flex; flex-wrap: wrap; gap: 8px; }
+  .modulex-iletisim-rehber-karti-cip { display: inline-flex; align-items: center; gap: 6px; min-height: 40px; padding: 8px 14px; border: 1px solid --cizgi--; border-radius: 999px; color: inherit; font-weight: 650; text-decoration: none; transition: border-color 0.2s ease, transform 0.2s ease; }
+  .modulex-iletisim-rehber-karti-cip:hover { border-color: --accent--; transform: translateY(-2px); }
+  .modulex-iletisim-rehber-karti-cikon { font-size: 18px; }
+  .modulex-iletisim-rehber-karti-harita { position: relative; overflow: hidden; min-height: 280px; border-radius: --yuvarlak--; background: --kartBg--; }
+  .modulex-iletisim-rehber-karti-iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+  .modulex-iletisim-rehber-karti-hdesen { position: absolute; inset: 0; display: grid; place-items: center; background-color: color-mix(in srgb, --accent-- 8%, --kartBg--); background-image: linear-gradient(color-mix(in srgb, --text-- 7%, transparent) 1px, transparent 1px), linear-gradient(90deg, color-mix(in srgb, --text-- 7%, transparent) 1px, transparent 1px), radial-gradient(circle at 30% 40%, color-mix(in srgb, --accent-- 18%, transparent) 0 18%, transparent 19%); background-size: 36px 36px, 36px 36px, 100% 100%; }
+  .modulex-iletisim-rehber-karti-pin { color: --accentInk--; font-size: 56px; animation: modulex-iletisim-rehber-karti-zipla 2.4s ease-in-out infinite; }
+  @keyframes modulex-iletisim-rehber-karti-zipla { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+  .modulex-iletisim-rehber-karti-hyol { position: absolute; inset-block-end: 16px; inset-inline-start: 16px; display: inline-flex; align-items: center; gap: 8px; min-height: 44px; padding: 10px 16px; border-radius: 999px; background: --bg--; color: --text--; font-weight: 700; text-decoration: none; box-shadow: 0 6px 20px color-mix(in srgb, --text-- 16%, transparent); transition: transform 0.2s ease; }
+  .modulex-iletisim-rehber-karti-hyol:hover { transform: translateY(-2px); }
+  .modulex-iletisim-rehber-karti-hyol .material-symbols-outlined { font-size: 18px; color: --accentInk--; }
+
+  :is([lang="ar"], [lang="fa"], [lang="he"], [lang="ur"]) .modulex-iletisim-rehber-karti :is(.modulex-iletisim-rehber-karti-baslik, .modulex-iletisim-rehber-karti-ust, h3, h4, strong) { letter-spacing: 0; }
+  :is([lang="ar"], [lang="fa"], [lang="he"], [lang="ur"]) .modulex-iletisim-rehber-karti-baslik { line-height: 1.35; }
+  @media (max-width: 768px) {
+    .modulex-iletisim-rehber-karti { padding-inline: 16px; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .modulex-iletisim-rehber-karti *, .modulex-iletisim-rehber-karti *::before, .modulex-iletisim-rehber-karti *::after { animation: none !important; transition: none !important; }
+  }
+</style>

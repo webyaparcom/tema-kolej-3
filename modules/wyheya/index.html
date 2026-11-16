@@ -1,0 +1,141 @@
+<section class="modulex-hafta-zaman-cizelgesi{{fbsinif}}" {{fbetiket}}>
+  <div class="modulex-hafta-zaman-cizelgesi-ic">
+    {{fbbas}}
+    {{fbgovde}}
+  </div>
+</section>
+
+<style>
+  /* hafta-zaman-cizelgesi — module ailesinde zaman ekseni yok; tanitim-numarali dikey sabit listedir, tanitim-sekmeli metin sekmeleridir. Bu modül hafta numarasını eksen yapar (yatay pist + dolgu + tek detay paneli); body/tur-programi'nin gün gün dikey programından ve timeline ailesinin tarih akışından farklı olarak bir seferde tek hafta okunur. */
+  .modulex-hafta-zaman-cizelgesi { box-sizing: border-box; width: 100%; padding: --bosluk-- 20px; background: --bg--; color: --text--; font-size: 1rem; line-height: 1.6; font-family: var(--mx-font-sans, inherit); overflow-wrap: break-word; }
+  .modulex-hafta-zaman-cizelgesi *, .modulex-hafta-zaman-cizelgesi *::before, .modulex-hafta-zaman-cizelgesi *::after { box-sizing: border-box; }
+  /* ham/css.css «* { font-size: 14px }» kalıtımı keser — modül içinde boyut üstten gelsin (ikon yazı tipi hariç) */
+  .modulex-hafta-zaman-cizelgesi :where(*:not(.material-symbols-outlined)) { font-size: inherit; }
+  /* aynı «*» kuralı font-weight 400 · line-height 1.2 · font-family de basar — modül içinde kalıtım */
+  .modulex-hafta-zaman-cizelgesi :where(*:not(.material-symbols-outlined)) { font-weight: inherit; line-height: inherit; font-family: inherit; }
+  .modulex-hafta-zaman-cizelgesi :where(h2, h3, h4, p, ul, ol, li, figure, blockquote, dl, dd) { margin: 0; }
+  .modulex-hafta-zaman-cizelgesi :where(ul, ol) { padding: 0; list-style: none; }
+  .modulex-hafta-zaman-cizelgesi img { display: block; max-width: 100%; }
+  /* <img width height> öznitelik yüksekliği CSS aspect-ratio'yu ezer — sıfır özgüllükle auto (modül sınıfının height'ı yine kazanır) */
+  :where(.modulex-hafta-zaman-cizelgesi) img { height: auto; }
+  .modulex-hafta-zaman-cizelgesi [hidden] { display: none !important; }
+  .modulex-hafta-zaman-cizelgesi :where(a, button, summary, [data-cevir]) { cursor: pointer; }
+  .modulex-hafta-zaman-cizelgesi :where(a, button, summary, [tabindex]):focus-visible { outline: 3px solid --accent--; outline-offset: 3px; }
+  .modulex-hafta-zaman-cizelgesi-ic { max-width: --max--; margin-inline: auto; }
+  .modulex-hafta-zaman-cizelgesi-bas { display: grid; gap: 12px; margin-block-end: clamp(32px, 4vw, 52px); }
+  .modulex-hafta-zaman-cizelgesi--bassiz .modulex-hafta-zaman-cizelgesi-bas { display: none; }
+  .modulex-hafta-zaman-cizelgesi-ust { color: --accentInk--; font-size: 0.8rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; }
+  .modulex-hafta-zaman-cizelgesi-baslik { font-family: var(--mx-font-heading, inherit); font-size: clamp(1.8rem, 3.4vw, 2.8rem); font-weight: 750; letter-spacing: -0.025em; line-height: 1.1; }
+  .modulex-hafta-zaman-cizelgesi-metin { color: --muted--; font-size: 1.05rem; line-height: 1.7; }
+  .modulex-hafta-zaman-cizelgesi-cta { display: flex; flex-wrap: wrap; gap: 12px; margin-block-start: 8px; }
+  .modulex-hafta-zaman-cizelgesi-dugme { display: inline-flex; align-items: center; gap: 8px; min-height: 48px; padding: 12px 22px; border: 2px solid --accent--; border-radius: 999px; background: --accent--; color: --accentText--; font-weight: 700; text-decoration: none; transition: transform 0.25s ease, background 0.25s ease, color 0.25s ease; }
+  .modulex-hafta-zaman-cizelgesi-dugme:hover { transform: translateY(-2px); }
+  .modulex-hafta-zaman-cizelgesi-dugme--ikincil { background: transparent; color: --text--; border-color: --cizgi--; }
+  .modulex-hafta-zaman-cizelgesi-dugme--ikincil:hover { border-color: --accent--; }
+  .modulex-hafta-zaman-cizelgesi-dugme .material-symbols-outlined { font-size: 20px; }
+
+  .modulex-hafta-zaman-cizelgesi-cizelge { display: grid; gap: clamp(22px, 3vw, 34px); }
+  .modulex-hafta-zaman-cizelgesi-giris { display: grid; gap: 14px; max-width: 760px; }
+  .modulex-hafta-zaman-cizelgesi-pist { overflow-x: auto; padding-block: 6px 4px; scroll-snap-type: x proximity; scrollbar-width: thin; }
+  .modulex-hafta-zaman-cizelgesi-isaretler { position: relative; display: grid; grid-auto-flow: column; grid-auto-columns: minmax(104px, 1fr); min-width: 100%; }
+  .modulex-hafta-zaman-cizelgesi-isaretler::before, .modulex-hafta-zaman-cizelgesi-isaretler::after { content: ""; position: absolute; inset-block-start: 27px; height: 4px; border-radius: 4px; }
+  .modulex-hafta-zaman-cizelgesi-isaretler::before { inset-inline: 0; background: --cizgi--; }
+  .modulex-hafta-zaman-cizelgesi-isaretler::after { inset-inline-start: 0; width: var(--dolu, 0%); background: --accent--; transition: width 0.5s cubic-bezier(0.2, 0.8, 0.2, 1); }
+  .modulex-hafta-zaman-cizelgesi-isaret { position: relative; z-index: 1; display: grid; justify-items: center; scroll-snap-align: center; }
+  .modulex-hafta-zaman-cizelgesi-nokta { display: grid; justify-items: center; gap: 8px; padding: 0 6px 6px; color: --muted--; text-align: center; text-decoration: none; transition: color 0.25s ease; }
+  .modulex-hafta-zaman-cizelgesi-hno { display: grid; place-items: center; width: 58px; height: 58px; border: 3px solid --cizgi--; border-radius: 50%; background: --bg--; color: --text--; font-size: 1.2rem; font-weight: 800; font-variant-numeric: tabular-nums; transition: transform 0.3s ease, background 0.3s ease, border-color 0.3s ease, color 0.3s ease; }
+  .modulex-hafta-zaman-cizelgesi-nokta:hover .modulex-hafta-zaman-cizelgesi-hno { border-color: --accent--; }
+  .modulex-hafta-zaman-cizelgesi-nokta[aria-selected="true"] { color: --text--; }
+  .modulex-hafta-zaman-cizelgesi-nokta[aria-selected="true"] .modulex-hafta-zaman-cizelgesi-hno { border-color: --accent--; background: --accent--; color: --accentText--; transform: scale(1.12); }
+  .modulex-hafta-zaman-cizelgesi-hkisa { max-width: 14ch; font-size: 0.82rem; font-weight: 650; line-height: 1.3; }
+  .modulex-hafta-zaman-cizelgesi-detaylar { display: grid; gap: 16px; }
+  .modulex-hafta-zaman-cizelgesi-detay { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: clamp(18px, 3vw, 40px); align-items: start; padding: clamp(22px, 3vw, 36px); border-inline-start: 6px solid --accent--; border-radius: --yuvarlak--; background: --kartBg--; }
+  .modulex-hafta-zaman-cizelgesi--js .modulex-hafta-zaman-cizelgesi-detay { animation: modulex-hafta-zaman-cizelgesi-ac 0.45s ease both; }
+  .modulex-hafta-zaman-cizelgesi-dno { display: grid; justify-items: center; min-width: 96px; padding: 12px; border-radius: calc(--yuvarlak-- * 0.7); background: --vurguBg--; color: --vurguText--; }
+  .modulex-hafta-zaman-cizelgesi-dno span { font-size: 0.74rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; }
+  .modulex-hafta-zaman-cizelgesi-dno strong { font-size: clamp(2.4rem, 5vw, 3.4rem); font-weight: 850; line-height: 1; font-variant-numeric: tabular-nums; }
+  .modulex-hafta-zaman-cizelgesi-dyazi { display: grid; gap: 10px; }
+  .modulex-hafta-zaman-cizelgesi-dikon { color: --accentInk--; font-size: 30px; }
+  .modulex-hafta-zaman-cizelgesi-dbaslik { font-size: 1.35rem; font-weight: 750; }
+  .modulex-hafta-zaman-cizelgesi-dmetin { max-width: 64ch; color: --muted--; }
+  .modulex-hafta-zaman-cizelgesi-gezinti { display: flex; align-items: center; gap: 14px; }
+  .modulex-hafta-zaman-cizelgesi-gok { display: inline-grid; place-items: center; width: 44px; height: 44px; border: 1.5px solid --cizgi--; border-radius: 12px; background: transparent; color: --text--; transition: border-color 0.2s ease, opacity 0.2s ease; }
+  .modulex-hafta-zaman-cizelgesi-gok:hover:not(:disabled) { border-color: --accent--; }
+  .modulex-hafta-zaman-cizelgesi-gok:disabled { opacity: 0.35; cursor: default; }
+  .modulex-hafta-zaman-cizelgesi-konum { font-weight: 700; font-variant-numeric: tabular-nums; }
+  @keyframes modulex-hafta-zaman-cizelgesi-ac { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
+  @media (max-width: 768px) {
+    .modulex-hafta-zaman-cizelgesi-isaretler { grid-auto-columns: 88px; }
+    .modulex-hafta-zaman-cizelgesi-detay { grid-template-columns: minmax(0, 1fr); }
+    .modulex-hafta-zaman-cizelgesi-dno { grid-auto-flow: column; align-items: baseline; gap: 8px; justify-self: start; }
+  }
+  .modulex-hafta-zaman-cizelgesi-bag { color: inherit; text-decoration: none; }
+  .modulex-hafta-zaman-cizelgesi-bag:hover { text-decoration: underline; text-underline-offset: 4px; }
+  .modulex-hafta-zaman-cizelgesi-mbaslik { font-size: 1.05rem; font-weight: 700; }
+  .modulex-hafta-zaman-cizelgesi-mmetin { color: --muted--; font-size: 0.95rem; }
+
+  :is([lang="ar"], [lang="fa"], [lang="he"], [lang="ur"]) .modulex-hafta-zaman-cizelgesi :is(.modulex-hafta-zaman-cizelgesi-baslik, .modulex-hafta-zaman-cizelgesi-ust, h3, h4, strong) { letter-spacing: 0; }
+  :is([lang="ar"], [lang="fa"], [lang="he"], [lang="ur"]) .modulex-hafta-zaman-cizelgesi-baslik { line-height: 1.35; }
+  @media (max-width: 768px) {
+    .modulex-hafta-zaman-cizelgesi { padding-inline: 16px; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .modulex-hafta-zaman-cizelgesi *, .modulex-hafta-zaman-cizelgesi *::before, .modulex-hafta-zaman-cizelgesi *::after { animation: none !important; transition: none !important; }
+  }
+</style>
+<script>
+  (() => {
+    const P = "modulex-hafta-zaman-cizelgesi";
+    const az = !!(window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches);
+    const haftaCizelge = (s, P, az) => {
+        const t = [...s.querySelectorAll("[data-hi]")];
+        if (!t.length) return;
+        s.classList.add(P + "--js");
+        const p = t.map((a) => document.getElementById(a.getAttribute("aria-controls")));
+        const pist = s.querySelector("[data-pist]");
+        const gz = s.querySelector("[data-gezinti]");
+        const konum = s.querySelector("[data-konum]");
+        const dl = document.documentElement.lang || undefined;
+        const f = (n) => { try { return new Intl.NumberFormat(dl).format(n); } catch (x) { return String(n); } };
+        let ak = Math.max(0, t.findIndex((a) => a.getAttribute("aria-selected") === "true"));
+        const sec = (i, odak, ilk) => {
+          ak = Math.max(0, Math.min(t.length - 1, i));
+          t.forEach((a, j) => { a.setAttribute("aria-selected", String(j === ak)); a.tabIndex = j === ak ? 0 : -1; });
+          p.forEach((x, j) => { if (x) x.hidden = j !== ak; });
+          if (pist) {
+            pist.style.setProperty("--dolu", (((ak + 0.5) / t.length) * 100).toFixed(2) + "%");
+            const r = pist.getBoundingClientRect();
+            const b = t[ak].getBoundingClientRect();
+            pist.scrollBy({ left: b.left + b.width / 2 - (r.left + r.width / 2), behavior: az || ilk ? "auto" : "smooth" });
+          }
+          if (odak) t[ak].focus({ preventScroll: true });
+          if (konum) konum.textContent = f(ak + 1) + " / " + f(t.length);
+          if (gz) gz.querySelectorAll("[data-hy]").forEach((b) => { b.disabled = (b.dataset.hy === "-1" && ak === 0) || (b.dataset.hy === "1" && ak === t.length - 1); });
+        };
+        t.forEach((a, i) => {
+          a.addEventListener("click", (e) => { e.preventDefault(); sec(i); });
+          a.addEventListener("keydown", (e) => {
+            const rtl = getComputedStyle(s).direction === "rtl";
+            let n = null;
+            if (e.key === (rtl ? "ArrowLeft" : "ArrowRight")) n = ak + 1;
+            else if (e.key === (rtl ? "ArrowRight" : "ArrowLeft")) n = ak - 1;
+            else if (e.key === "Home") n = 0;
+            else if (e.key === "End") n = t.length - 1;
+            if (n === null) return;
+            e.preventDefault();
+            sec(n, true);
+          });
+        });
+        if (gz && t.length > 1) {
+          gz.hidden = false;
+          gz.querySelectorAll("[data-hy]").forEach((b) => b.addEventListener("click", () => sec(ak + Number(b.dataset.hy))));
+        }
+        sec(ak, false, true);
+      };
+    document.querySelectorAll("." + P).forEach((s) => {
+      if (s.dataset.fbHazir) return;
+      s.dataset.fbHazir = "1";
+      haftaCizelge(s, P, az);
+    });
+  })();
+</script>

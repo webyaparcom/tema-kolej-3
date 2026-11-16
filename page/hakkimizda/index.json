@@ -1,0 +1,48 @@
+{
+  "name": {
+    "tr": "Okulumuz",
+    "en": "Our school",
+    "ar": "مدرستنا"
+  },
+  "status": "play",
+  "category": "",
+  "id": "hakkimizda",
+  "url": "",
+  "path": "hakkimizda",
+  "index": 1,
+  "icon": "info",
+  "desing": {
+    "header": [],
+    "body": [
+      "oo21ff",
+      "cwjirv",
+      "97klf3"
+    ],
+    "footer": []
+  },
+  "pathnext": "",
+  "description": {
+    "tr": "Okulun işleyişi ve okul içi programlar (kurgusal).",
+    "en": "How the school runs and in-school programmes (fictional).",
+    "ar": "سير المدرسة والبرامج الداخلية (افتراضية)."
+  },
+  "spot": {
+    "tr": "",
+    "en": "",
+    "ar": ""
+  },
+  "desc": {},
+  "title": {
+    "tr": "Okulumuz",
+    "en": "Our school",
+    "ar": "مدرستنا"
+  },
+  "keyword": {
+    "tr": "hakkımızda",
+    "en": "about",
+    "ar": "من نحن"
+  },
+  "text": {},
+  "update": "2026-11-16T16:14:18.744Z",
+  "date": "2026-10-30"
+}

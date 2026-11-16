@@ -1,0 +1,40 @@
+{
+  "id": "498yoo8y77",
+  "name": {
+    "tr": "Uyum haftaları",
+    "en": "Settling-in",
+    "ar": "التكيّف"
+  },
+  "description": {
+    "tr": "Yeni öğrenciler için altı haftalık uyum programı (kurgusal).",
+    "en": "A six-week settling-in programme for new pupils (fictional).",
+    "ar": "برنامج تكيّف لمدة ستة أسابيع للطلاب الجدد (افتراضي)."
+  },
+  "keyword": {
+    "tr": "Okul işleyişi",
+    "en": "How the school works",
+    "ar": "كيف تعمل المدرسة"
+  },
+  "path": "hizmetler",
+  "icon": "work",
+  "category": "",
+  "status": "play",
+  "desing": {
+    "header": [],
+    "body": [
+      "wyheya",
+      "97klf3"
+    ],
+    "footer": []
+  },
+  "index": 0,
+  "url": "",
+  "text": {},
+  "title": {
+    "tr": "Uyum haftaları",
+    "en": "Settling-in",
+    "ar": "التكيّف"
+  },
+  "date": "2026-11-16T16:06:08.398Z",
+  "update": "2026-11-16T16:14:18.740Z"
+}

@@ -1,0 +1,149 @@
+<section class="modulex-surec-kayit-kontrol{{fbsinif}}" {{fbetiket}}>
+  <div class="modulex-surec-kayit-kontrol-ic">
+    {{fbbas}}
+    {{fbgovde}}
+  </div>
+</section>
+
+<style>
+  /* surec-kayit-kontrol — surec-kontrol-listesi süs onay daireli durağan bir satır listesidir; bu modülde ziyaretçinin işaretlediği gerçek checkbox'lar, kalıcı ilerleme (localStorage), halka sayaç + sıfırla ve adım başına belge bağlantı çipleri var — kayıt yapılacaklar listesi. */
+  .modulex-surec-kayit-kontrol { box-sizing: border-box; width: 100%; padding: --bosluk-- 20px; background: --bg--; color: --text--; font-size: 1rem; line-height: 1.6; font-family: var(--mx-font-sans, inherit); overflow-wrap: break-word; }
+  .modulex-surec-kayit-kontrol *, .modulex-surec-kayit-kontrol *::before, .modulex-surec-kayit-kontrol *::after { box-sizing: border-box; }
+  /* ham/css.css «* { font-size: 14px }» kalıtımı keser — modül içinde boyut üstten gelsin (ikon yazı tipi hariç) */
+  .modulex-surec-kayit-kontrol :where(*:not(.material-symbols-outlined)) { font-size: inherit; }
+  /* aynı «*» kuralı font-weight 400 · line-height 1.2 · font-family de basar — modül içinde kalıtım */
+  .modulex-surec-kayit-kontrol :where(*:not(.material-symbols-outlined)) { font-weight: inherit; line-height: inherit; font-family: inherit; }
+  .modulex-surec-kayit-kontrol :where(h2, h3, h4, p, ul, ol, li, figure, blockquote, dl, dd) { margin: 0; }
+  .modulex-surec-kayit-kontrol :where(ul, ol) { padding: 0; list-style: none; }
+  .modulex-surec-kayit-kontrol img { display: block; max-width: 100%; }
+  /* <img width height> öznitelik yüksekliği CSS aspect-ratio'yu ezer — sıfır özgüllükle auto (modül sınıfının height'ı yine kazanır) */
+  :where(.modulex-surec-kayit-kontrol) img { height: auto; }
+  .modulex-surec-kayit-kontrol [hidden] { display: none !important; }
+  .modulex-surec-kayit-kontrol :where(a, button, summary, [data-cevir]) { cursor: pointer; }
+  .modulex-surec-kayit-kontrol :where(a, button, summary, [tabindex]):focus-visible { outline: 3px solid --accent--; outline-offset: 3px; }
+  .modulex-surec-kayit-kontrol-ic { max-width: --max--; margin-inline: auto; }
+  .modulex-surec-kayit-kontrol-bas { display: grid; gap: 12px; margin-block-end: clamp(32px, 4vw, 52px); }
+  .modulex-surec-kayit-kontrol--bassiz .modulex-surec-kayit-kontrol-bas { display: none; }
+  .modulex-surec-kayit-kontrol-ust { color: --accentInk--; font-size: 0.8rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; }
+  .modulex-surec-kayit-kontrol-baslik { font-family: var(--mx-font-heading, inherit); font-size: clamp(1.8rem, 3.4vw, 2.8rem); font-weight: 750; letter-spacing: -0.025em; line-height: 1.1; }
+  .modulex-surec-kayit-kontrol-metin { color: --muted--; font-size: 1.05rem; line-height: 1.7; }
+  .modulex-surec-kayit-kontrol-bas { max-width: 760px; }
+  .modulex-surec-kayit-kontrol-cta { display: flex; flex-wrap: wrap; gap: 12px; margin-block-start: 8px; }
+  .modulex-surec-kayit-kontrol-dugme { display: inline-flex; align-items: center; gap: 8px; min-height: 48px; padding: 12px 22px; border: 2px solid --accent--; border-radius: 999px; background: --accent--; color: --accentText--; font-weight: 700; text-decoration: none; transition: transform 0.25s ease, background 0.25s ease, color 0.25s ease; }
+  .modulex-surec-kayit-kontrol-dugme:hover { transform: translateY(-2px); }
+  .modulex-surec-kayit-kontrol-dugme--ikincil { background: transparent; color: --text--; border-color: --cizgi--; }
+  .modulex-surec-kayit-kontrol-dugme--ikincil:hover { border-color: --accent--; }
+  .modulex-surec-kayit-kontrol-dugme .material-symbols-outlined { font-size: 20px; }
+
+  .modulex-surec-kayit-kontrol-duzen { display: grid; grid-template-columns: minmax(220px, 0.7fr) minmax(0, 2fr); gap: clamp(24px, 4vw, 56px); align-items: start; }
+  .modulex-surec-kayit-kontrol:not(.modulex-surec-kayit-kontrol--kjs) .modulex-surec-kayit-kontrol-duzen { grid-template-columns: minmax(0, 1fr); }
+  .modulex-surec-kayit-kontrol:not(.modulex-surec-kayit-kontrol--kjs) .modulex-surec-kayit-kontrol-pano { display: none; }
+  .modulex-surec-kayit-kontrol-pano { position: sticky; inset-block-start: 96px; display: grid; justify-items: center; gap: 14px; padding: 28px 22px; border: 1px solid --cizgi--; border-radius: --yuvarlak--; background: --bg--; text-align: center; }
+  .modulex-surec-kayit-kontrol-olcer { --y: 0; display: grid; place-items: center; width: 168px; aspect-ratio: 1; border-radius: 50%; background: conic-gradient(--accent-- calc(var(--y) * 360deg), color-mix(in srgb, --text-- 10%, transparent) 0); transition: transform 0.4s ease; }
+  .modulex-surec-kayit-kontrol--tamam .modulex-surec-kayit-kontrol-olcer { transform: scale(1.05); }
+  .modulex-surec-kayit-kontrol-oic { display: flex; align-items: center; justify-content: center; gap: 4px; width: 76%; aspect-ratio: 1; border-radius: 50%; background: --bg--; }
+  .modulex-surec-kayit-kontrol-osay { font-size: 2.6rem; font-weight: 850; line-height: 1; font-variant-numeric: tabular-nums; }
+  .modulex-surec-kayit-kontrol-otop { color: --muted--; font-size: 1.1rem; font-weight: 700; }
+  .modulex-surec-kayit-kontrol-durum { font-weight: 700; }
+  .modulex-surec-kayit-kontrol-sifirla { display: inline-flex; align-items: center; gap: 6px; min-height: 40px; padding: 6px 14px; border: 1px solid --cizgi--; border-radius: 999px; background: transparent; color: --text--; font: inherit; font-size: 0.88rem; font-weight: 650; transition: border-color 0.25s ease; }
+  .modulex-surec-kayit-kontrol-sifirla:hover { border-color: --accent--; }
+  .modulex-surec-kayit-kontrol-sifirla .material-symbols-outlined { font-size: 18px; }
+  .modulex-surec-kayit-kontrol-not { color: --muted--; font-size: 0.82rem; }
+  .modulex-surec-kayit-kontrol-liste { display: grid; gap: 12px; }
+  .modulex-surec-kayit-kontrol-madde { position: relative; display: grid; gap: 12px; padding: 18px 20px; border: 1px solid --cizgi--; border-radius: --yuvarlak--; background: --bg--; transition: border-color 0.3s ease, background-color 0.3s ease; }
+  .modulex-surec-kayit-kontrol-madde--tamam, .modulex-surec-kayit-kontrol-madde:has(.modulex-surec-kayit-kontrol-kutu:checked) { border-color: --accent--; background-color: color-mix(in srgb, --accent-- 6%, --bg--); }
+  .modulex-surec-kayit-kontrol-mbas { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 16px; }
+  .modulex-surec-kayit-kontrol-kutu { position: absolute; width: 1px; height: 1px; margin: 0; opacity: 0; }
+  .modulex-surec-kayit-kontrol-metk { display: flex; flex: 1 1 260px; align-items: center; gap: 14px; cursor: pointer; }
+  .modulex-surec-kayit-kontrol-isaret { display: grid; flex: none; place-items: center; width: 34px; height: 34px; border: 2px solid --accent--; border-radius: 9px; color: transparent; transition: background 0.25s ease, color 0.25s ease, transform 0.25s ease; }
+  .modulex-surec-kayit-kontrol-isaret .material-symbols-outlined { font-size: 22px; }
+  .modulex-surec-kayit-kontrol-metk:hover .modulex-surec-kayit-kontrol-isaret { transform: scale(1.06); }
+  .modulex-surec-kayit-kontrol-kutu:checked + .modulex-surec-kayit-kontrol-metk .modulex-surec-kayit-kontrol-isaret { background: --accent--; color: --accentText--; }
+  .modulex-surec-kayit-kontrol-kutu:focus-visible + .modulex-surec-kayit-kontrol-metk .modulex-surec-kayit-kontrol-isaret { outline: 3px solid --accent--; outline-offset: 3px; }
+  .modulex-surec-kayit-kontrol-myazi { display: grid; gap: 2px; }
+  .modulex-surec-kayit-kontrol-kbaslik { font-size: 1.1rem; font-weight: 750; transition: color 0.25s ease; }
+  .modulex-surec-kayit-kontrol-kutu:checked + .modulex-surec-kayit-kontrol-metk .modulex-surec-kayit-kontrol-kbaslik { text-decoration: line-through; text-decoration-thickness: 2px; }
+  .modulex-surec-kayit-kontrol-mgovde { display: grid; gap: 12px; padding-inline-start: 48px; }
+  .modulex-surec-kayit-kontrol-kmetin { color: --muted--; font-size: 0.95rem; }
+  .modulex-surec-kayit-kontrol-belge { display: grid; gap: 8px; }
+  .modulex-surec-kayit-kontrol-betk { color: --muted--; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; }
+  .modulex-surec-kayit-kontrol-blist { display: flex; flex-wrap: wrap; gap: 8px; }
+  .modulex-surec-kayit-kontrol-bbag { display: inline-flex; align-items: center; gap: 6px; min-height: 36px; padding: 6px 12px; border: 1px dashed --cizgi--; border-radius: 8px; color: --text--; font-size: 0.88rem; font-weight: 600; text-decoration: none; transition: border-color 0.25s ease, color 0.25s ease; }
+  a.modulex-surec-kayit-kontrol-bbag:hover { border-style: solid; border-color: --accent--; color: --accentInk--; }
+  .modulex-surec-kayit-kontrol-bbag .material-symbols-outlined { font-size: 18px; color: --accentInk--; }
+  .modulex-surec-kayit-kontrol-git { display: inline-flex; align-items: center; gap: 6px; width: fit-content; color: --accentInk--; font-weight: 700; text-decoration: none; transition: gap 0.25s ease; }
+  .modulex-surec-kayit-kontrol-git:hover { gap: 10px; }
+  .modulex-surec-kayit-kontrol-git .material-symbols-outlined { font-size: 18px; }
+  @media (max-width: 1024px) {
+    .modulex-surec-kayit-kontrol-duzen { grid-template-columns: minmax(0, 1fr); }
+    .modulex-surec-kayit-kontrol-pano { position: static; grid-template-columns: auto minmax(0, 1fr); justify-items: start; column-gap: 22px; text-align: start; }
+    .modulex-surec-kayit-kontrol-olcer { grid-row: span 3; width: 112px; }
+    .modulex-surec-kayit-kontrol-osay { font-size: 1.8rem; }
+  }
+  @media (max-width: 768px) {
+    .modulex-surec-kayit-kontrol-mgovde { padding-inline-start: 0; }
+    .modulex-surec-kayit-kontrol-madde { padding: 16px; }
+  }
+  .modulex-surec-kayit-kontrol-sure { display: inline-flex; align-items: center; gap: 6px; justify-self: start; width: fit-content; padding: 4px 12px; border-radius: 999px; background: color-mix(in srgb, --accent-- 12%, transparent); color: --text--; font-size: 0.85rem; font-weight: 600; }
+  .modulex-surec-kayit-kontrol-sure .material-symbols-outlined { font-size: 18px; color: --accentInk--; }
+  .modulex-surec-kayit-kontrol-etiket { color: --accentInk--; font-size: 0.78rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; }
+
+  .modulex-surec-kayit-kontrol-bag { color: inherit; text-decoration: none; }
+  .modulex-surec-kayit-kontrol-bag::after { content: ""; position: absolute; inset: 0; z-index: 3; }
+  .modulex-surec-kayit-kontrol-bag:hover { text-decoration: underline; text-underline-offset: 4px; }
+
+  :is([lang="ar"], [lang="fa"], [lang="he"], [lang="ur"]) .modulex-surec-kayit-kontrol :is(.modulex-surec-kayit-kontrol-baslik, .modulex-surec-kayit-kontrol-ust, h3, h4, strong) { letter-spacing: 0; }
+  :is([lang="ar"], [lang="fa"], [lang="he"], [lang="ur"]) .modulex-surec-kayit-kontrol-baslik { line-height: 1.35; }
+  @media (max-width: 768px) {
+    .modulex-surec-kayit-kontrol { padding-inline: 16px; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .modulex-surec-kayit-kontrol *, .modulex-surec-kayit-kontrol *::before, .modulex-surec-kayit-kontrol *::after { animation: none !important; transition: none !important; }
+  }
+</style>
+<script>
+  (() => {
+    const P = "modulex-surec-kayit-kontrol";
+    const az = !!(window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches);
+    const kayitKontrol = (s, P) => {
+        const pano = s.querySelector("[data-kk-pano]");
+        const kutu = [...s.querySelectorAll("[data-kk]")];
+        if (!pano || !kutu.length) return;
+        s.classList.add(P + "--kjs");
+        const anahtar = "fb-kk-" + P + "-" + kutu.length + "-" + location.pathname.replace(/^\/[a-z]{2,3}(-[A-Za-z]+)?(?=\/)/, "");
+        let nf = null;
+        try { nf = new Intl.NumberFormat(document.documentElement.lang || undefined); } catch (x) { nf = null; }
+        const f = (n) => (nf ? nf.format(n) : String(n));
+        const t = kutu.length;
+        const sayi = pano.querySelector("[data-kk-sayi]");
+        const durum = pano.querySelector("[data-kk-durum]");
+        const olcer = pano.querySelector("[data-kk-olcer]");
+        const kalip = pano.dataset.kkKalip || "";
+        const oku = () => { try { const v = JSON.parse(localStorage.getItem(anahtar) || "[]"); return Array.isArray(v) ? v : []; } catch (x) { return []; } };
+        const kaydet = (d) => { try { localStorage.setItem(anahtar, JSON.stringify(d)); } catch (x) { /* özel kip */ } };
+        const guncelle = (yaz) => {
+          const d = kutu.filter((k) => k.checked).map((k) => k.dataset.kk);
+          const n = d.length;
+          if (sayi) sayi.textContent = f(n);
+          if (durum) durum.textContent = kalip ? kalip.split("{n}").join(f(n)).split("{t}").join(f(t)) : f(n) + " / " + f(t);
+          if (olcer) olcer.style.setProperty("--y", String(t ? n / t : 0));
+          kutu.forEach((k) => { const m = k.closest("[data-kk-madde]"); if (m) m.classList.toggle(P + "-madde--tamam", k.checked); });
+          s.classList.toggle(P + "--tamam", n === t);
+          if (yaz) kaydet(d);
+        };
+        const kayitli = oku();
+        kutu.forEach((k) => {
+          if (kayitli.includes(k.dataset.kk)) k.checked = true;
+          k.addEventListener("change", () => guncelle(true));
+        });
+        const sf = pano.querySelector("[data-kk-sifirla]");
+        if (sf) sf.addEventListener("click", () => { kutu.forEach((k) => { k.checked = false; }); guncelle(true); });
+        guncelle(false);
+      };
+    document.querySelectorAll("." + P).forEach((s) => {
+      if (s.dataset.fbHazir) return;
+      s.dataset.fbHazir = "1";
+      kayitKontrol(s, P, az);
+    });
+  })();
+</script>

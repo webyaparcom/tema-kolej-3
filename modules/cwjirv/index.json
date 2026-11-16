@@ -1,0 +1,55 @@
+{
+  "name": "Referans Vaka Metrik — öncesi/sonrası ölçülü vaka kartları",
+  "description": "Koyu zeminde iki sütun vaka kartı: künyede baş harf rozeti, müşteri adı, sektör · yıl ve vaka bağlantısı; altında kısa iş özeti ve «önce → sonra» ölçüleri (dev sonuç sayısı + oran çubuğu). Kart görünür olunca çubuk önceki değerden sonrakine akar; Önce/Sonra anahtarıyla elle çevrilir. Ölçüsü olmayan kart yalnız künye + özettir. referans-vitrin-secim tek müşteriyi sahnede anlatır, referans-bento-vurgu tek amiral bloğu öne çıkarır; bu modül her referansı ölçülebilir sonuçla kanıtlar — dl tabanlı önce/sonra ölçü satırları, oran çubuğu ve kart başına Önce/Sonra anahtarı ailede yok. Metinler dil sözlüğü, renkler desing + var(--mx-site-*), mantıksal CSS → RTL. Veri yoksa blok basılmaz.",
+  "version": "1.0.0",
+  "icon": "monitoring",
+  "category": "referans",
+  "subCategory": "case-metrics",
+  "tags": [
+    "referans",
+    "case-study",
+    "before-after",
+    "metrics",
+    "rtl",
+    "fabrika"
+  ],
+  "desing": {
+    "max": "1200px",
+    "bosluk": "clamp(56px, 8vw, 104px)",
+    "yuvarlak": "18px",
+    "ust": "",
+    "baslik": "",
+    "metin": "",
+    "sayi": "",
+    "sayiEtiket": "",
+    "bg": "var(--mx-site-text, #111318)",
+    "text": "var(--mx-site-bg, #ffffff)",
+    "muted": "color-mix(in srgb, var(--mx-site-bg, #ffffff) 78%, var(--mx-site-text, #111318))",
+    "kartBg": "color-mix(in srgb, var(--mx-site-bg, #ffffff) 7%, transparent)",
+    "cizgi": "color-mix(in srgb, var(--mx-site-bg, #ffffff) 18%, transparent)",
+    "accent": "color-mix(in srgb, var(--mx-site-primary, #2563eb) 55%, var(--mx-site-bg, #ffffff))",
+    "accentInk": "color-mix(in srgb, var(--mx-site-primary, #2563eb) 45%, var(--mx-site-bg, #ffffff))",
+    "accentText": "var(--mx-site-text, #111318)",
+    "vurguBg": "color-mix(in srgb, var(--mx-site-primary, #2563eb) 55%, var(--mx-site-bg, #ffffff))",
+    "vurguText": "var(--mx-site-text, #111318)",
+    "onceEtiket": "",
+    "sonraEtiket": "",
+    "bgcolor": "var(--mx-site-text, #111318)",
+    "color": "var(--mx-site-bg, #ffffff)"
+  },
+  "data": [],
+  "veri": {
+    "statik": true,
+    "dinamik": false,
+    "kaynak": "data",
+    "alanlar": {
+      "ad": "marka / kurum adı (dil sözlüğü ya da düz metin; logo alt yazısı)",
+      "img": "logo görseli yolu (boşsa yazı logosu)",
+      "url": "iç/dış bağlantı (dış → yeni sekme)",
+      "sektor": "dil sözlüğü (sektör / iş alanı)",
+      "metin": "dil sözlüğü (kısa görüş / iş özeti)",
+      "kisi": "dil sözlüğü (görüş sahibi)",
+      "yil": "birlikte çalışma yılı (düz metin)"
+    }
+  }
+}

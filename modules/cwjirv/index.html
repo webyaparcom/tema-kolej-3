@@ -1,0 +1,123 @@
+<section class="modulex-referans-vaka-metrik{{fbsinif}}" {{fbetiket}}>
+  <div class="modulex-referans-vaka-metrik-ic">
+    {{fbbas}}
+    {{fbgovde}}
+  </div>
+</section>
+
+<style>
+  /* referans-vaka-metrik — referans-vitrin-secim tek müşteriyi sahnede anlatır, referans-bento-vurgu tek amiral bloğu öne çıkarır; bu modül her referansı ölçülebilir sonuçla kanıtlar — dl tabanlı önce/sonra ölçü satırları, oran çubuğu ve kart başına Önce/Sonra anahtarı ailede yok. */
+  .modulex-referans-vaka-metrik { box-sizing: border-box; width: 100%; padding: --bosluk-- 20px; background: --bg--; color: --text--; font-size: 1rem; line-height: 1.6; font-family: var(--mx-font-sans, inherit); overflow-wrap: break-word; }
+  .modulex-referans-vaka-metrik *, .modulex-referans-vaka-metrik *::before, .modulex-referans-vaka-metrik *::after { box-sizing: border-box; }
+  /* ham/css.css «* { font-size: 14px }» kalıtımı keser — modül içinde boyut üstten gelsin (ikon yazı tipi hariç) */
+  .modulex-referans-vaka-metrik :where(*:not(.material-symbols-outlined)) { font-size: inherit; }
+  /* aynı «*» kuralı font-weight 400 · line-height 1.2 · font-family de basar — modül içinde kalıtım */
+  .modulex-referans-vaka-metrik :where(*:not(.material-symbols-outlined)) { font-weight: inherit; line-height: inherit; font-family: inherit; }
+  .modulex-referans-vaka-metrik :where(h2, h3, h4, p, ul, ol, li, figure, blockquote, dl, dd) { margin: 0; }
+  .modulex-referans-vaka-metrik :where(ul, ol) { padding: 0; list-style: none; }
+  .modulex-referans-vaka-metrik img { display: block; max-width: 100%; }
+  /* <img width height> öznitelik yüksekliği CSS aspect-ratio'yu ezer — sıfır özgüllükle auto (modül sınıfının height'ı yine kazanır) */
+  :where(.modulex-referans-vaka-metrik) img { height: auto; }
+  .modulex-referans-vaka-metrik [hidden] { display: none !important; }
+  .modulex-referans-vaka-metrik :where(a, button, summary, [data-cevir]) { cursor: pointer; }
+  .modulex-referans-vaka-metrik :where(a, button, summary, [tabindex]):focus-visible { outline: 3px solid --accent--; outline-offset: 3px; }
+  .modulex-referans-vaka-metrik-ic { max-width: --max--; margin-inline: auto; }
+  .modulex-referans-vaka-metrik-bas { display: grid; gap: 12px; margin-block-end: clamp(32px, 4vw, 52px); }
+  .modulex-referans-vaka-metrik--bassiz .modulex-referans-vaka-metrik-bas { display: none; }
+  .modulex-referans-vaka-metrik-ust { color: --accentInk--; font-size: 0.8rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; }
+  .modulex-referans-vaka-metrik-baslik { font-family: var(--mx-font-heading, inherit); font-size: clamp(1.8rem, 3.4vw, 2.8rem); font-weight: 750; letter-spacing: -0.025em; line-height: 1.1; }
+  .modulex-referans-vaka-metrik-metin { color: --muted--; font-size: 1.05rem; line-height: 1.7; }
+  .modulex-referans-vaka-metrik-bas { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 10px 48px; align-items: end; }
+  .modulex-referans-vaka-metrik-ust { grid-column: 1 / -1; }
+  .modulex-referans-vaka-metrik-cta { display: flex; flex-wrap: wrap; gap: 12px; margin-block-start: 8px; }
+  .modulex-referans-vaka-metrik-dugme { display: inline-flex; align-items: center; gap: 8px; min-height: 48px; padding: 12px 22px; border: 2px solid --accent--; border-radius: 999px; background: --accent--; color: --accentText--; font-weight: 700; text-decoration: none; transition: transform 0.25s ease, background 0.25s ease, color 0.25s ease; }
+  .modulex-referans-vaka-metrik-dugme:hover { transform: translateY(-2px); }
+  .modulex-referans-vaka-metrik-dugme--ikincil { background: transparent; color: --text--; border-color: --cizgi--; }
+  .modulex-referans-vaka-metrik-dugme--ikincil:hover { border-color: --accent--; }
+  .modulex-referans-vaka-metrik-dugme .material-symbols-outlined { font-size: 20px; }
+
+  .modulex-referans-vaka-metrik-vakalar { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; align-items: start; }
+  .modulex-referans-vaka-metrik-vaka { position: relative; display: grid; align-content: start; gap: 18px; padding: clamp(22px, 3vw, 34px); border: 1px solid --cizgi--; border-radius: --yuvarlak--; background: --kartBg--; transition: border-color 0.3s ease, transform 0.3s ease; }
+  .modulex-referans-vaka-metrik-vaka:hover { border-color: --accent--; transform: translateY(-3px); }
+  .modulex-referans-vaka-metrik-kunye { display: grid; grid-template-columns: 52px minmax(0, 1fr) auto; gap: 14px; align-items: center; padding-block-end: 16px; border-block-end: 1px dashed --cizgi--; }
+  .modulex-referans-vaka-metrik-harf { display: grid; place-items: center; width: 52px; height: 52px; overflow: hidden; border-radius: 14px; background: --vurguBg--; color: --vurguText--; font-weight: 800; }
+  .modulex-referans-vaka-metrik-kad { display: grid; gap: 2px; min-width: 0; }
+  .modulex-referans-vaka-metrik-vad { font-size: 1.2rem; font-weight: 750; line-height: 1.25; }
+  .modulex-referans-vaka-metrik-valt { color: --muted--; font-size: 0.85rem; font-weight: 600; }
+  .modulex-referans-vaka-metrik-git { display: grid; place-items: center; width: 42px; height: 42px; border: 1px solid --cizgi--; border-radius: 50%; color: --text--; text-decoration: none; transition: background 0.25s ease, color 0.25s ease, border-color 0.25s ease; }
+  .modulex-referans-vaka-metrik-git:hover { border-color: --accent--; background: --accent--; color: --accentText--; }
+  .modulex-referans-vaka-metrik-git .material-symbols-outlined { font-size: 20px; }
+  .modulex-referans-vaka-metrik-efsane { color: --muted--; font-size: 0.78rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; }
+  .modulex-referans-vaka-metrik--vjs .modulex-referans-vaka-metrik-efsane { display: none; }
+  .modulex-referans-vaka-metrik-anahtar { display: inline-flex; justify-self: start; gap: 2px; padding: 4px; border: 1px solid --cizgi--; border-radius: 999px; }
+  .modulex-referans-vaka-metrik:not(.modulex-referans-vaka-metrik--vjs) .modulex-referans-vaka-metrik-anahtar { display: none; }
+  .modulex-referans-vaka-metrik-gec { min-height: 36px; padding: 6px 16px; border: 0; border-radius: 999px; background: transparent; color: --text--; font: inherit; font-size: 0.85rem; font-weight: 700; transition: background 0.25s ease, color 0.25s ease; }
+  .modulex-referans-vaka-metrik-gec[aria-pressed="true"] { background: --accent--; color: --accentText--; }
+  .modulex-referans-vaka-metrik-olcum { display: grid; gap: 16px; }
+  .modulex-referans-vaka-metrik-metrik { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 8px 14px; align-items: baseline; }
+  .modulex-referans-vaka-metrik-me { color: --muted--; font-size: 0.8rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; }
+  .modulex-referans-vaka-metrik-md { display: inline-flex; align-items: baseline; gap: 8px; font-variant-numeric: tabular-nums; }
+  .modulex-referans-vaka-metrik-once { color: --muted--; font-size: 1rem; font-weight: 600; text-decoration: line-through; transition: color 0.4s ease, font-size 0.4s ease; }
+  .modulex-referans-vaka-metrik-sonra { color: --accentInk--; font-size: clamp(1.6rem, 2.6vw, 2.1rem); font-weight: 850; letter-spacing: -0.03em; line-height: 1; transition: color 0.4s ease, font-size 0.4s ease; }
+  .modulex-referans-vaka-metrik-mok { align-self: center; color: --muted--; font-size: 18px; }
+  .modulex-referans-vaka-metrik-cubuk { grid-column: 1 / -1; height: 8px; overflow: hidden; border-radius: 8px; background: color-mix(in srgb, --text-- 12%, transparent); }
+  .modulex-referans-vaka-metrik-dolu { display: block; width: calc(var(--s) * 100%); height: 100%; border-radius: inherit; background: --accent--; transition: width 0.9s cubic-bezier(0.2, 0.8, 0.2, 1), background 0.4s ease; }
+  .modulex-referans-vaka-metrik-vaka--once .modulex-referans-vaka-metrik-dolu { width: calc(var(--o) * 100%); background: --muted--; }
+  .modulex-referans-vaka-metrik-vaka--once .modulex-referans-vaka-metrik-once { color: --text--; font-size: clamp(1.6rem, 2.6vw, 2.1rem); font-weight: 850; text-decoration: none; }
+  .modulex-referans-vaka-metrik-vaka--once .modulex-referans-vaka-metrik-sonra { color: --muted--; font-size: 1rem; font-weight: 600; }
+  .modulex-referans-vaka-metrik-kisi { color: --muted--; font-size: 0.9rem; font-style: italic; }
+  @media (max-width: 1024px) { .modulex-referans-vaka-metrik-vakalar { gap: 14px; } .modulex-referans-vaka-metrik-vaka { padding: 22px; } }
+  @media (max-width: 768px) {
+    .modulex-referans-vaka-metrik-vakalar { grid-template-columns: minmax(0, 1fr); }
+    .modulex-referans-vaka-metrik-kunye { grid-template-columns: 44px minmax(0, 1fr) auto; gap: 12px; }
+    .modulex-referans-vaka-metrik-harf { width: 44px; height: 44px; border-radius: 12px; }
+  }
+  .modulex-referans-vaka-metrik-logo { display: block; width: auto; max-width: 100%; height: clamp(32px, 4vw, 48px); object-fit: contain; filter: grayscale(1); transition: filter 0.3s ease, transform 0.3s ease; }
+  .modulex-referans-vaka-metrik-kelime { display: inline-block; color: --text--; font-family: var(--mx-font-heading, inherit); font-weight: 800; letter-spacing: -0.02em; line-height: 1.15; transition: color 0.3s ease; }
+  .modulex-referans-vaka-metrik-bag { color: inherit; text-decoration: none; }
+  .modulex-referans-vaka-metrik-sektor { color: --accentInk--; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; }
+  .modulex-referans-vaka-metrik-kmetin { color: --muted--; font-size: 0.95rem; line-height: 1.65; }
+  .modulex-referans-vaka-metrik-yil { color: --muted--; font-size: 0.85rem; font-weight: 700; font-variant-numeric: tabular-nums; }
+  .modulex-referans-vaka-metrik-harf img { width: 100%; height: 100%; object-fit: contain; }
+
+  :is([lang="ar"], [lang="fa"], [lang="he"], [lang="ur"]) .modulex-referans-vaka-metrik :is(.modulex-referans-vaka-metrik-baslik, .modulex-referans-vaka-metrik-ust, h3, h4, strong) { letter-spacing: 0; }
+  :is([lang="ar"], [lang="fa"], [lang="he"], [lang="ur"]) .modulex-referans-vaka-metrik-baslik { line-height: 1.35; }
+  @media (max-width: 1024px) {
+    .modulex-referans-vaka-metrik-bas { grid-template-columns: minmax(0, 1fr); }
+  }
+  @media (max-width: 768px) {
+    .modulex-referans-vaka-metrik { padding-inline: 16px; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .modulex-referans-vaka-metrik *, .modulex-referans-vaka-metrik *::before, .modulex-referans-vaka-metrik *::after { animation: none !important; transition: none !important; }
+  }
+</style>
+<script>
+  (() => {
+    const P = "modulex-referans-vaka-metrik";
+    const az = !!(window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches);
+    const vakaGecis = (s, P, az) => {
+        const kartlar = [...s.querySelectorAll("[data-vaka]")];
+        if (!kartlar.length) return;
+        s.classList.add(P + "--vjs");
+        const kur = (k, durum) => {
+          k.classList.toggle(P + "-vaka--once", durum === "once");
+          k.querySelectorAll("[data-vaka-gec]").forEach((b) => b.setAttribute("aria-pressed", String(b.dataset.vakaGec === durum)));
+        };
+        kartlar.forEach((k) => k.querySelectorAll("[data-vaka-gec]").forEach((b) => b.addEventListener("click", () => { k.dataset.vakaEl = "1"; kur(k, b.dataset.vakaGec); })));
+        if (az || !("IntersectionObserver" in window)) return;
+        kartlar.forEach((k) => kur(k, "once"));
+        const io = new IntersectionObserver((gs) => gs.forEach((g) => {
+          if (!g.isIntersecting) return;
+          io.unobserve(g.target);
+          setTimeout(() => { if (!g.target.dataset.vakaEl) kur(g.target, "sonra"); }, 700);
+        }), { threshold: 0.45 });
+        kartlar.forEach((k) => io.observe(k));
+      };
+    document.querySelectorAll("." + P).forEach((s) => {
+      if (s.dataset.fbHazir) return;
+      s.dataset.fbHazir = "1";
+      vakaGecis(s, P, az);
+    });
+  })();
+</script>

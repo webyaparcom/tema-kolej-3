@@ -1,0 +1,114 @@
+{
+  "data": [
+    {
+      "id": "498yoo8y77",
+      "name": {
+        "tr": "Uyum haftaları",
+        "en": "Settling-in",
+        "ar": "التكيّف"
+      },
+      "description": {
+        "tr": "Yeni öğrenciler için altı haftalık uyum programı (kurgusal).",
+        "en": "A six-week settling-in programme for new pupils (fictional).",
+        "ar": "برنامج تكيّف لمدة ستة أسابيع للطلاب الجدد (افتراضي)."
+      },
+      "path": "hizmetler",
+      "icon": "work",
+      "category": "",
+      "status": "play",
+      "desing": {
+        "header": [],
+        "body": [
+          "wyheya",
+          "97klf3"
+        ],
+        "footer": []
+      },
+      "index": 0
+    },
+    {
+      "name": {
+        "tr": "Okulumuz",
+        "en": "Our school",
+        "ar": "مدرستنا"
+      },
+      "status": "play",
+      "id": "hakkimizda",
+      "path": "hakkimizda",
+      "category": "",
+      "url": "",
+      "index": 1,
+      "icon": "info",
+      "desing": {
+        "header": [],
+        "body": [
+          "oo21ff",
+          "cwjirv",
+          "97klf3"
+        ],
+        "footer": []
+      },
+      "pathnext": "",
+      "description": {
+        "tr": "Okulun işleyişi ve okul içi programlar (kurgusal).",
+        "en": "How the school runs and in-school programmes (fictional).",
+        "ar": "سير المدرسة والبرامج الداخلية (افتراضية)."
+      }
+    },
+    {
+      "id": "bb91fcchbf",
+      "name": {
+        "tr": "Kayıt",
+        "en": "Enrolment",
+        "ar": "التسجيل"
+      },
+      "description": {
+        "tr": "Kayıt kontrol listesi ve veli görüşmesi (demo).",
+        "en": "Enrolment checklist and parent meeting (demo).",
+        "ar": "قائمة التحقق للتسجيل ولقاء أولياء الأمور (تجريبي)."
+      },
+      "path": "teklif-al",
+      "icon": "request_quote",
+      "category": "",
+      "status": "play",
+      "desing": {
+        "header": [],
+        "body": [
+          "wqifcp",
+          "97klf3"
+        ],
+        "footer": []
+      },
+      "index": 2
+    },
+    {
+      "name": {
+        "tr": "İletişim",
+        "en": "Contact",
+        "ar": "اتصل بنا"
+      },
+      "status": "play",
+      "id": "iletisim",
+      "path": "iletisim",
+      "category": "",
+      "url": "",
+      "index": 3,
+      "icon": "call",
+      "desing": {
+        "header": [],
+        "body": [
+          "uck1v2",
+          "k8mp01"
+        ],
+        "footer": []
+      },
+      "pathnext": "",
+      "description": {
+        "tr": "Adres, telefon ve çalışma saatleri.",
+        "en": "Address, phone and opening hours.",
+        "ar": "العنوان والهاتف وساعات العمل."
+      }
+    }
+  ],
+  "desc": []
+}
