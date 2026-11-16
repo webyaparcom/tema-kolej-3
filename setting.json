@@ -1,0 +1,54 @@
+{
+  "order": false,
+  "user": false,
+  "description": {
+    "tr": "Pusula Koleji: anaokulundan liseye ön başvuru, uyum haftaları ve kayıt kontrol listesi. Demo site; içerik kurgusaldır.",
+    "en": "Pusula College: pre-application from kindergarten to high school, settling-in weeks and an enrolment checklist. Demo site; content is fictional.",
+    "ar": "كلية بوصلة: طلب مسبق من رياض الأطفال حتى الثانوية، وأسابيع التكيّف، وقائمة تحقق للتسجيل. موقع تجريبي؛ المحتوى افتراضي."
+  },
+  "keyword": {
+    "tr": "özel okul, kolej, ön kayıt, uyum programı",
+    "en": "private school, pre-registration, settling-in programme",
+    "ar": "مدرسة خاصة، تسجيل مسبق، برنامج التكيّف"
+  },
+  "category": "Kurumsal",
+  "name": "Pusula Koleji",
+  "domain": "kolej-3.webyapar.com",
+  "langs": {
+    "tr": true,
+    "en": true,
+    "ar": true,
+    "de": false,
+    "ru": false,
+    "es": false,
+    "fr": false,
+    "it": false,
+    "ja": false,
+    "zh": false,
+    "ko": false,
+    "pt": false
+  },
+  "logo": "logo.png",
+  "multi": false,
+  "publishMode": "static",
+  "font": {
+    "body": "nunito",
+    "heading": "poppins",
+    "ar": {
+      "body": "ibm-plex-sans-arabic",
+      "heading": "noto-kufi-arabic"
+    }
+  },
+  "colorScheme": "auto",
+  "theme_color": "#B5432A",
+  "seo": {
+    "noindex": true
+  },
+  "cssTokens": {
+    "--mx-radius-sm": "10px",
+    "--mx-radius-md": "16px",
+    "--mx-radius-lg": "22px",
+    "--mx-radius-xl": "30px"
+  },
+  "icon": "icon.png"
+}

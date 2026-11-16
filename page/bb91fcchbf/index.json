@@ -1,0 +1,40 @@
+{
+  "id": "bb91fcchbf",
+  "name": {
+    "tr": "Kayıt",
+    "en": "Enrolment",
+    "ar": "التسجيل"
+  },
+  "description": {
+    "tr": "Kayıt kontrol listesi ve veli görüşmesi (demo).",
+    "en": "Enrolment checklist and parent meeting (demo).",
+    "ar": "قائمة التحقق للتسجيل ولقاء أولياء الأمور (تجريبي)."
+  },
+  "keyword": {
+    "tr": "teklif",
+    "en": "quote",
+    "ar": "عرض سعر"
+  },
+  "path": "teklif-al",
+  "icon": "request_quote",
+  "category": "",
+  "status": "play",
+  "desing": {
+    "header": [],
+    "body": [
+      "wqifcp",
+      "97klf3"
+    ],
+    "footer": []
+  },
+  "index": 2,
+  "url": "",
+  "text": {},
+  "title": {
+    "tr": "Kayıt",
+    "en": "Enrolment",
+    "ar": "التسجيل"
+  },
+  "date": "2026-11-16T16:06:08.407Z",
+  "update": "2026-11-16T16:14:18.748Z"
+}
