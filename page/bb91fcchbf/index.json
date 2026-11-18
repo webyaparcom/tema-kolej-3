@@ -3,17 +3,23 @@
   "name": {
     "tr": "Kayıt",
     "en": "Enrolment",
-    "ar": "التسجيل"
+    "ar": "التسجيل",
+    "de": "Anmeldung",
+    "ru": "Запись"
   },
   "description": {
     "tr": "Kayıt kontrol listesi ve veli görüşmesi (demo).",
     "en": "Enrolment checklist and parent meeting (demo).",
-    "ar": "قائمة التحقق للتسجيل ولقاء أولياء الأمور (تجريبي)."
+    "ar": "قائمة التحقق للتسجيل ولقاء أولياء الأمور (تجريبي).",
+    "de": "Checkliste für die Einschreibung und Elterngespräch (Demo).",
+    "ru": "Чек-лист для зачисления и встреча с родителями (демо)."
   },
   "keyword": {
     "tr": "teklif",
     "en": "quote",
-    "ar": "عرض سعر"
+    "ar": "عرض سعر",
+    "de": "Angebot",
+    "ru": "оценка"
   },
   "path": "teklif-al",
   "icon": "request_quote",
@@ -33,7 +39,9 @@
   "title": {
     "tr": "Kayıt",
     "en": "Enrolment",
-    "ar": "التسجيل"
+    "ar": "التسجيل",
+    "de": "Anmeldung",
+    "ru": "Запись"
   },
   "date": "2026-11-16T16:06:08.407Z",
   "update": "2026-11-16T16:14:18.748Z"

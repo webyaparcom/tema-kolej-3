@@ -2,7 +2,9 @@
   "name": {
     "tr": "Okulumuz",
     "en": "Our school",
-    "ar": "مدرستنا"
+    "ar": "مدرستنا",
+    "de": "Unsere Schule",
+    "ru": "О школе"
   },
   "status": "play",
   "category": "",
@@ -24,7 +26,9 @@
   "description": {
     "tr": "Okulun işleyişi ve okul içi programlar (kurgusal).",
     "en": "How the school runs and in-school programmes (fictional).",
-    "ar": "سير المدرسة والبرامج الداخلية (افتراضية)."
+    "ar": "سير المدرسة والبرامج الداخلية (افتراضية).",
+    "de": "Schulbetrieb und schulinterne Programme (fiktiv).",
+    "ru": "Работа школы и внутришкольные программы (вымышленные)."
   },
   "spot": {
     "tr": "",
@@ -35,12 +39,16 @@
   "title": {
     "tr": "Okulumuz",
     "en": "Our school",
-    "ar": "مدرستنا"
+    "ar": "مدرستنا",
+    "de": "Unsere Schule",
+    "ru": "О школе"
   },
   "keyword": {
     "tr": "hakkımızda",
     "en": "about",
-    "ar": "من نحن"
+    "ar": "من نحن",
+    "de": "Über uns",
+    "ru": "О нас"
   },
   "text": {},
   "update": "2026-11-16T16:14:18.744Z",

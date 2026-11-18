@@ -3,17 +3,23 @@
   "name": {
     "tr": "Vizyon",
     "en": "Vision",
-    "ar": "الرؤية"
+    "ar": "الرؤية",
+    "de": "Vision",
+    "ru": "Видение"
   },
   "description": {
     "tr": "Vizyonumuz",
     "en": "Our vision",
-    "ar": "رؤيتنا"
+    "ar": "رؤيتنا",
+    "de": "Unsere Vision",
+    "ru": "Наше видение"
   },
   "keyword": {
     "tr": "Vizyon",
     "en": "vision, our vision, goals",
-    "ar": "الرؤية, رؤيتنا, الأهداف"
+    "ar": "الرؤية, رؤيتنا, الأهداف",
+    "de": "Vision",
+    "ru": "Видение"
   },
   "path": "vizyon",
   "icon": "visibility",
@@ -29,12 +35,16 @@
   "text": {
     "tr": "<h2>Vizyonumuz</h2>\n<p>Küçük sınıflar ve açık iletişimle velilerin yanında duran bir okul olmak.</p>",
     "en": "<h2>Our vision</h2>\n<p>To be a school that stands by parents with small classes and open communication.</p>",
-    "ar": "<h2>رؤيتنا</h2>\n<p>أن نكون مدرسة تقف إلى جانب الأهل بصفوف صغيرة وتواصل مفتوح.</p>"
+    "ar": "<h2>رؤيتنا</h2>\n<p>أن نكون مدرسة تقف إلى جانب الأهل بصفوف صغيرة وتواصل مفتوح.</p>",
+    "de": "<h2>Unsere Vision</h2>\n<p>Eine Schule zu sein, die mit kleinen Klassen und offener Kommunikation an der Seite der Eltern steht.</p>",
+    "ru": "<h2>Наше видение</h2>\n<p>Быть школой, которая рядом с родителями благодаря небольшим классам и открытому общению.</p>"
   },
   "title": {
     "tr": "Vizyon",
     "en": "Vision",
-    "ar": "الرؤية"
+    "ar": "الرؤية",
+    "de": "Vision",
+    "ru": "Видение"
   },
   "date": "2026-11-16T16:06:08.272Z",
   "update": "2026-11-16T16:14:18.756Z",

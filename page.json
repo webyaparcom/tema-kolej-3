@@ -5,12 +5,16 @@
       "name": {
         "tr": "Uyum haftaları",
         "en": "Settling-in",
-        "ar": "التكيّف"
+        "ar": "التكيّف",
+        "de": "Eingewöhnung",
+        "ru": "Адаптация"
       },
       "description": {
         "tr": "Yeni öğrenciler için altı haftalık uyum programı (kurgusal).",
         "en": "A six-week settling-in programme for new pupils (fictional).",
-        "ar": "برنامج تكيّف لمدة ستة أسابيع للطلاب الجدد (افتراضي)."
+        "ar": "برنامج تكيّف لمدة ستة أسابيع للطلاب الجدد (افتراضي).",
+        "de": "Sechswöchiges Eingewöhnungsprogramm für neue Schülerinnen und Schüler (fiktiv).",
+        "ru": "Шестинедельная программа адаптации для новых учеников (условная)."
       },
       "path": "hizmetler",
       "icon": "work",
@@ -30,7 +34,9 @@
       "name": {
         "tr": "Okulumuz",
         "en": "Our school",
-        "ar": "مدرستنا"
+        "ar": "مدرستنا",
+        "de": "Unsere Schule",
+        "ru": "О школе"
       },
       "status": "play",
       "id": "hakkimizda",
@@ -52,7 +58,9 @@
       "description": {
         "tr": "Okulun işleyişi ve okul içi programlar (kurgusal).",
         "en": "How the school runs and in-school programmes (fictional).",
-        "ar": "سير المدرسة والبرامج الداخلية (افتراضية)."
+        "ar": "سير المدرسة والبرامج الداخلية (افتراضية).",
+        "de": "Schulbetrieb und schulinterne Programme (fiktiv).",
+        "ru": "Работа школы и внутришкольные программы (вымышленные)."
       }
     },
     {
@@ -60,12 +68,16 @@
       "name": {
         "tr": "Kayıt",
         "en": "Enrolment",
-        "ar": "التسجيل"
+        "ar": "التسجيل",
+        "de": "Anmeldung",
+        "ru": "Запись"
       },
       "description": {
         "tr": "Kayıt kontrol listesi ve veli görüşmesi (demo).",
         "en": "Enrolment checklist and parent meeting (demo).",
-        "ar": "قائمة التحقق للتسجيل ولقاء أولياء الأمور (تجريبي)."
+        "ar": "قائمة التحقق للتسجيل ولقاء أولياء الأمور (تجريبي).",
+        "de": "Checkliste für die Einschreibung und Elterngespräch (Demo).",
+        "ru": "Чек-лист для зачисления и встреча с родителями (демо)."
       },
       "path": "teklif-al",
       "icon": "request_quote",
@@ -85,7 +97,9 @@
       "name": {
         "tr": "İletişim",
         "en": "Contact",
-        "ar": "اتصل بنا"
+        "ar": "اتصل بنا",
+        "de": "Kontakt",
+        "ru": "Контакты"
       },
       "status": "play",
       "id": "iletisim",
@@ -106,7 +120,9 @@
       "description": {
         "tr": "Adres, telefon ve çalışma saatleri.",
         "en": "Address, phone and opening hours.",
-        "ar": "العنوان والهاتف وساعات العمل."
+        "ar": "العنوان والهاتف وساعات العمل.",
+        "de": "Adresse, Telefon und Öffnungszeiten.",
+        "ru": "Адрес, телефон и часы работы."
       }
     }
   ],

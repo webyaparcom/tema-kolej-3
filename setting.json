@@ -4,12 +4,16 @@
   "description": {
     "tr": "Pusula Koleji: anaokulundan liseye ön başvuru, uyum haftaları ve kayıt kontrol listesi. Demo site; içerik kurgusaldır.",
     "en": "Pusula College: pre-application from kindergarten to high school, settling-in weeks and an enrolment checklist. Demo site; content is fictional.",
-    "ar": "كلية بوصلة: طلب مسبق من رياض الأطفال حتى الثانوية، وأسابيع التكيّف، وقائمة تحقق للتسجيل. موقع تجريبي؛ المحتوى افتراضي."
+    "ar": "كلية بوصلة: طلب مسبق من رياض الأطفال حتى الثانوية، وأسابيع التكيّف، وقائمة تحقق للتسجيل. موقع تجريبي؛ المحتوى افتراضي.",
+    "de": "Pusula Koleji: Voranmeldung vom Kindergarten bis zum Gymnasium, Eingewöhnungswochen und Checkliste zur Anmeldung. Demo-Website; der Inhalt ist fiktiv.",
+    "ru": "Pusula Koleji: предварительная заявка от детского сада до лицея, недели адаптации и контрольный список для зачисления. Демо-сайт; содержание вымышленное."
   },
   "keyword": {
     "tr": "özel okul, kolej, ön kayıt, uyum programı",
     "en": "private school, pre-registration, settling-in programme",
-    "ar": "مدرسة خاصة، تسجيل مسبق، برنامج التكيّف"
+    "ar": "مدرسة خاصة، تسجيل مسبق، برنامج التكيّف",
+    "de": "Privatschule, Kolleg, Voranmeldung, Eingewöhnungsprogramm",
+    "ru": "частная школа, колледж, предварительная запись, программа адаптации"
   },
   "category": "Kurumsal",
   "name": "Pusula Koleji",
@@ -18,15 +22,27 @@
     "tr": true,
     "en": true,
     "ar": true,
-    "de": false,
-    "ru": false,
+    "de": true,
+    "ru": true,
     "es": false,
     "fr": false,
     "it": false,
     "ja": false,
     "zh": false,
     "ko": false,
-    "pt": false
+    "pt": false,
+    "fa": false,
+    "he": false,
+    "ur": false,
+    "nl": false,
+    "pl": false,
+    "uk": false,
+    "az": false,
+    "ka": false,
+    "el": false,
+    "bg": false,
+    "ro": false,
+    "hi": false
   },
   "logo": "logo.png",
   "multi": false,
