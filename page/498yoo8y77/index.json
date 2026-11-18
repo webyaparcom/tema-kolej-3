@@ -3,17 +3,23 @@
   "name": {
     "tr": "Uyum haftaları",
     "en": "Settling-in",
-    "ar": "التكيّف"
+    "ar": "التكيّف",
+    "de": "Eingewöhnung",
+    "ru": "Адаптация"
   },
   "description": {
     "tr": "Yeni öğrenciler için altı haftalık uyum programı (kurgusal).",
     "en": "A six-week settling-in programme for new pupils (fictional).",
-    "ar": "برنامج تكيّف لمدة ستة أسابيع للطلاب الجدد (افتراضي)."
+    "ar": "برنامج تكيّف لمدة ستة أسابيع للطلاب الجدد (افتراضي).",
+    "de": "Sechswöchiges Eingewöhnungsprogramm für neue Schülerinnen und Schüler (fiktiv).",
+    "ru": "Шестинедельная программа адаптации для новых учеников (условная)."
   },
   "keyword": {
     "tr": "Okul işleyişi",
     "en": "How the school works",
-    "ar": "كيف تعمل المدرسة"
+    "ar": "كيف تعمل المدرسة",
+    "de": "Schulbetrieb",
+    "ru": "Работа школы"
   },
   "path": "hizmetler",
   "icon": "work",
@@ -33,7 +39,9 @@
   "title": {
     "tr": "Uyum haftaları",
     "en": "Settling-in",
-    "ar": "التكيّف"
+    "ar": "التكيّف",
+    "de": "Eingewöhnung",
+    "ru": "Адаптация"
   },
   "date": "2026-11-16T16:06:08.398Z",
   "update": "2026-11-16T16:14:18.740Z"
